@@ -10,14 +10,11 @@
 </template>
 
 <script>
-export default {
-  name: '',
-
-}
+  export default {}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang='stylus'>
+<style lang='stylus' rel='stylesheet/stylus'>
   .ratings
     position absolute
     top 174px
@@ -34,7 +31,7 @@ export default {
         width 137px
         border-right 1px solid rgba(7,17,27,0.1)
         text-align center
-        @media only screen and(max-width 320px)
-          flex 0 0 120px
-          width 120px
+        // @media only screen and(max-width 320px)
+        //   flex 0 0 120px
+        //   width 120px
 </style>
