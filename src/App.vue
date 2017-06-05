@@ -51,6 +51,7 @@ export default {
 
 <style lang='stylus' rel='stylesheet/stylus'>
   @import "./common/stylus/mixin.styl"
+  
   #app
     .tab
       display flex
