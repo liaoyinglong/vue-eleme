@@ -1,5 +1,5 @@
 <template>
-  <div class="rating" ref="ratings">
+  <div class="ratings" ref="ratings">
     <div class="ratings-content">
       <div class="overview">
         <div class="overview-left">
@@ -10,12 +10,12 @@
         <div class="overview-right">
           <div class="score-wrapper">
             <span class="title">服务态度</span>
-            <star :size='36' :score='seller,serviceScore'></star>
+            <star :size='36' :score='seller.serviceScore'></star>
             <span class="score">{{seller.serviceScore}}</span>
           </div>
           <div class="score-wrapper">
             <span class="title">商品打分</span>
-            <star :size='36' :score='seller,foodScore'></star>
+            <star :size='36' :score='seller.foodScore'></star>
             <span class="score">{{seller.foodScore}}</span>
           </div>
           <div class="delivery-wrapper">
@@ -25,26 +25,26 @@
         </div>
       </div>
       <split></split>
-      <ratingselect @select="selectRating" @toggle="toggleContent" :selectType="selectType" :onlyContent="onlyContent" :ratings="ratings"></ratingselect>
+      <ratingselect @select="selectRating" @toggle="toggleContent" :selectType="selectType" :onlyContent="onlyContent" :ratings="rating"></ratingselect>
       <div class="rating-wrapper">
         <ul>
-          <li v-for="rating in ratings" v-show="needShow(rating.rateType,rating.text)" class="rating-item">
+          <li v-for="ratingItem in rating" v-show="true || needShow(ratingItem.rateType,ratingItem.text)" class="rating-item">
             <div class="avatar">
-              <img :src="rating.avatar" alt="" width="28" height="28">
+              <img :src="ratingItem.avatar" alt="" width="28" height="28">
             </div>
             <div class="content">
-              <h1 class="name">{{rating.username}}</h1>
+              <h1 class="name">{{ratingItem.username}}</h1>
               <div class="star-wrapper">
-                <star :size='24' :score='rating.score'></star>
-                <span class="delivery" v-show="rating.deliveryTime">{{rating.deliveryTime}}</span>
+                <star :size='24' :score='ratingItem.score'></star>
+                <span class="delivery" v-show="ratingItem.deliveryTime">{{ratingItem.deliveryTime}}</span>
               </div>
-              <p class="text">{{rating.text}}</p>
-              <div class="recommend" v-show="rating.recommend && rating.recommend.length">
+              <p class="text">{{ratingItem.text}}</p>
+              <div class="recommend" v-show="ratingItem.recommend && ratingItem.recommend.length">
                 <span class="icon-thumb_up"></span>
-                <span class="item" v-for="item in rating.recommend">{{item}}</span>
+                <span class="item" v-for="item in ratingItem.recommend">{{item}}</span>
               </div>
               <div class="time">
-                {{rating.rateTime | formatDate}}
+                {{ratingItem.rateTime | formatDate}}
               </div>
             </div>
           </li>
@@ -67,7 +67,7 @@
   export default {
     data() {
       return {
-        ratings: [],
+        rating: [],
         selectType: ALL,
         onlyContent: true
       }
@@ -81,7 +81,7 @@
       this.$http.get('/api/ratings').then(res => {
         res = res.body
         if (res.errno === ERR_OK) {
-          this.ratings = res.data
+          this.rating = res.data
         }
         this.$nextTick(() => {
           this.scroll = new BScroll(this.$refs.ratings, {

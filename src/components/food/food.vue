@@ -34,7 +34,7 @@
             <p class="text">{{food.info}}</p>
           </div>
           <split></split>
-          <div class="ratings">
+          <div class="rating">
             <h1 class="title">商品评价</h1>
             <ratingselect :select-type='selectType' :only-content='onlyContent' :desc='desc' :ratings='food.ratings' @select="selectRating" @toggle="toggleContent"></ratingselect>
             <div class="rating-wrapper">
