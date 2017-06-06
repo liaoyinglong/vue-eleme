@@ -265,7 +265,7 @@ const ERR_OK = 0;
   },
   created() {
     //因为在dev-server.js中定义了获取数据的接口，所以这里可以省略路径的写法
-    this.$http.get('/static/json/data.json').then(response => {
+    this.$http.get('http://liaoyinglong.com/vue-eleme/dist/static/json/data.json').then(response => {
 
       //Object.assign() 方法用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
       //复制的不是指针，是值，所以源对象更改之后不会影响复制之后的
@@ -678,7 +678,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created() {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
     //因为在dev-server.js中定义了获取数据的接口，所以这里可以省略路径的写法
-    this.$http.get('/static/json/data.json').then(response => {
+    this.$http.get('http://liaoyinglong.com/vue-eleme/dist/static/json/data.json').then(response => {
       //Object.assign() 方法用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
       //复制的不是指针，是值，所以源对象更改之后不会影响复制之后的
       //赋值的时候必须要想清楚需要的是什么值，就取什么值给对应的变量
@@ -918,7 +918,7 @@ const ERR_OK = 0;
     }
   },
   created() {
-    this.$http.get('/static/json/data.json').then(res => {
+    this.$http.get('http://liaoyinglong.com/vue-eleme/dist/static/json/data.json').then(res => {
       this.rating = res.body.ratings;
       this.$nextTick(() => {
         this.scroll = new __WEBPACK_IMPORTED_MODULE_3_better_scroll___default.a(this.$refs.ratings, {
