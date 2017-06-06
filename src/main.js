@@ -33,13 +33,13 @@ const routes = [{
 //定义路由
 const router = new VueRouter({
   //指定路由匹配触发时候的的class
-  linkActiveClass:'active',
+  linkActiveClass: 'active',
   routes
 })
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   template: '<App/>',
-  components: {App},
+  components: { App },
   router,
 });
