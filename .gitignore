@@ -7,4 +7,4 @@ yarn-error.log*
 .idea/
 resource/
 debug.log
-dist
+

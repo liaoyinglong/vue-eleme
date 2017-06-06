@@ -101,11 +101,8 @@
       }
     },
     created() {
-      this.$http.get('/api/ratings').then(res => {
-        res = res.body
-        if (res.errno === ERR_OK) {
-          this.rating = res.data
-        }
+      this.$http.get('/static/json/data.json').then(res => {
+        this.rating = res.body.ratings
         this.$nextTick(() => {
           this.scroll = new BScroll(this.$refs.ratings, {
             click: true

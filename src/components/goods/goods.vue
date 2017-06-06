@@ -4,7 +4,7 @@
       <ul>
         <li v-for='(item,index) in goods' class='menu-item' :class="{'current':currentIndex==index}" @click='selectMenu(index,$event)'>
           <span class='text border-1px'>
-            <span v-show='item.type > 0 ' class='icon' :class='classMap[item.type]'></span> {{ item.name }}
+              <span v-show='item.type > 0 ' class='icon' :class='classMap[item.type]'></span> {{ item.name }}
           </span>
         </li>
       </ul>
@@ -105,9 +105,9 @@
       },
       _dtop(target) {
         //体验优化，异步执行下落动画
-        this.$nextTick(()=>{
-        //访问子组件，并调用子组件的方法drop并把target传入
-        this.$refs.shopcart.drop(target)
+        this.$nextTick(() => {
+          //访问子组件，并调用子组件的方法drop并把target传入
+          this.$refs.shopcart.drop(target)
         })
       },
       selectFood(food, event) {
@@ -118,7 +118,6 @@
         //通过this.$refs访问子组件并在点下去调用子组件的方法
         this.$refs.food.show()
       }
-  
     },
     computed: {
       //表示当前左侧的索引
@@ -159,20 +158,16 @@
     created() {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
       //因为在dev-server.js中定义了获取数据的接口，所以这里可以省略路径的写法
-      this.$http.get('/api/goods').then(response => {
-        //判断错误码
-        //response的数据存在 response.body.data里面
-        if (response.body.errno == 0) {
-          //Object.assign() 方法用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
-          //复制的不是指针，是值，所以源对象更改之后不会影响复制之后的
-          //赋值的时候必须要想清楚需要的是什么值，就取什么值给对应的变量
-          this.goods = response.body.data
-          //即使数据更新了，但是vue更新dom是异步的，所以要通过钩子函数来确保BScroll获取的dom高度是vue更新dom之后的高度，需要通过一个钩子函数来确定，
-          this.$nextTick(() => {
-            this._initScroll()
-            this._calculateHeight()
-          })
-        }
+      this.$http.get('/static/json/data.json').then(response => {
+        //Object.assign() 方法用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+        //复制的不是指针，是值，所以源对象更改之后不会影响复制之后的
+        //赋值的时候必须要想清楚需要的是什么值，就取什么值给对应的变量
+        this.goods = response.body.goods
+        //即使数据更新了，但是vue更新dom是异步的，所以要通过钩子函数来确保BScroll获取的dom高度是vue更新dom之后的高度，需要通过一个钩子函数来确定，
+        this.$nextTick(() => {
+          this._initScroll()
+          this._calculateHeight()
+        })
       })
     },
   }
