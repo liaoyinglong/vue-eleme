@@ -28,7 +28,7 @@
       <ratingselect @select="selectRating" @toggle="toggleContent" :selectType="selectType" :onlyContent="onlyContent" :ratings="rating"></ratingselect>
       <div class="rating-wrapper">
         <ul>
-          <li v-for="ratingItem in rating" v-show="true || needShow(ratingItem.rateType,ratingItem.text)" class="rating-item">
+          <li v-for="ratingItem in rating" v-show="needShow(ratingItem.rateType,ratingItem.text)" class="rating-item">
             <div class="avatar">
               <img :src="ratingItem.avatar" alt="" width="28" height="28">
             </div>
@@ -70,6 +70,29 @@
         rating: [],
         selectType: ALL,
         onlyContent: true
+      }
+    },
+    methods: {
+      needShow(type, text) {
+        if (this.onlyContent && !text) {
+          return false
+        }
+        if (this.selectType === ALL) {
+          return true
+        }
+        return type === this.selectType
+      },
+      selectRating(type) {
+        this.selectType = type;
+        this.$nextTick(() => {
+          this.scroll.refresh();
+        });
+      },
+      toggleContent() {
+        this.onlyContent = !this.onlyContent;
+        this.$nextTick(() => {
+          this.scroll.refresh();
+        });
       }
     },
     props: {
