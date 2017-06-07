@@ -5,7 +5,7 @@
 ## 移动端
 扫二维码在手机上查看效果更好
 
-![二维码](https://github.com/liaoyinglong/vue-eleme/qr.png)
+![二维码](https://github.com/liaoyinglong/vue-eleme/blob/master/qr.png)
 
 ## 运用技术栈
 
