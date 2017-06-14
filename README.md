@@ -1,6 +1,6 @@
 # 基于vue2.x的仿饿了么项目
 
-## [线上预览地址(（请使用chrome开发者手机演示模式预览）)](http://liaoyinglong.com/vue-eleme/dist/#/goods)
+## [线上预览地址(请使用chrome开发者手机演示模式预览)](http://liaoyinglong.com/vue-eleme/dist/#/goods)
 
 ## 移动端
 扫二维码在手机上查看效果更好
@@ -14,6 +14,14 @@
 - vue
 - vue-resource
 - vue-router
+- webpack
+- express
+
+## 收获
+
+- 对前端组件化开发的模式更加熟悉，更好的解决前端页面模版耦合复杂度。
+- 学习了新的一门前端css预处理语言-stylus。
+
 
 ## Build Setup
 
