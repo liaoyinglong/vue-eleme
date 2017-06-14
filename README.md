@@ -7,6 +7,8 @@
 
 ![二维码](https://github.com/liaoyinglong/vue-eleme/blob/master/qr.png)
 
+![二维码](https://github.com/liaoyinglong/vue-eleme/blob/master/预览.gif)
+
 ## 运用技术栈
 
 - vue
