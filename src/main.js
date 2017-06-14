@@ -10,7 +10,7 @@ import ratings from 'components/ratings/ratings.vue';
 import seller from 'components/seller/seller.vue';
 import App from './App'
 
-import 'common/stylus/index.styl'
+
 
 //使用vue-router
 Vue.use(VueRouter)
