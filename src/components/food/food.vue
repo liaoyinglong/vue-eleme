@@ -3,7 +3,7 @@
     <transition name='move'>
       <div class="food" v-show="showFlag" ref="food">
         <div class="food-content">
-          <div class="img-header">
+          <div class="image-header">
             <img :src="food.image" alt="">
             <div class="back" @click='hide'>
               <i class="icon-arrow_lift"></i>
@@ -153,67 +153,67 @@ export default {
 }
 </script>
 
-<style lang='stylus' rel='stylesheet/stylus'>
+<style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixin.styl"
+
   .food
-    position fixed
-    left 0
-    top 0
-    /*为什么要bottom？因为底部是留给购物车组件显示的，购物车组件高是48px*/
-    bottom 48px
-    // z-index -20
-    // width 100vw
-    background-color #fff
-    transform translate3d(0,0,0)
-    &.move-enter-active,&.move-leave-active
-      transition all 0.5s linear
-    &.move-enter,&.move-leave-active
-      transform translate3d(100%,0,0)
-    .img-header
-      position relative
-      width 100%
-      height 0
-      padding-bottom 100%
-      /*padding设置百分比就是按照盒子的宽来计算的，所以此处设置100%的padding就会得到一个宽高相等的容器*/
+    position: fixed
+    left: 0
+    top: 0
+    bottom: 48px
+    z-index: 30
+    width: 100%
+    background: #fff
+    transform: translate3d(0, 0, 0)
+    &.move-enter-active, &.move-leave-active
+      transition: all 0.2s linear
+    &.move-enter, &.move-leave-active
+      transform: translate3d(100%, 0, 0)
+    .image-header
+      position: relative
+      width: 100%
+      height: 0
+      padding-top: 100%
       img
-        position absolute
-        top 0
-        left 0
-        height 100%
-        width 100%
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
       .back
-        position absolute
-        top 10px
-        left 0
+        position: absolute
+        top: 10px
+        left: 0
         .icon-arrow_lift
-          display block
-          padding 10px
-          font-style 20px
-          color #fff
+          display: block
+          padding: 10px
+          font-size: 20px
+          color: #fff
+
     .content
-      padding 18px
-      position relative
+      position: relative
+      padding: 18px
       .title
-        line-height 14px
-        margin-bottom 8px
-        font-size 14px
-        font-weight 700
-        color rgb(7,17,27)
+        line-height: 14px
+        margin-bottom: 8px
+        font-size: 14px
+        font-weight: 700
+        color: rgb(7, 17, 27)
       .detail
-        font-size 0
-        margin-bottom 18px
-        line-height 10px
-        height 10px
-        .sell-count,.rating
-          font-size 10px
-          color rgb(147,153,159)  
+        margin-bottom: 18px
+        line-height: 10px
+        height: 10px
+        font-size: 0
+        .sell-count, .rating
+          font-size: 10px
+          color: rgb(147, 153, 159)
         .sell-count
-          margin-right 12px
+          margin-right: 12px
       .price
         font-weight: 700
         line-height: 24px
         .now
-          margin-right: 18px
+          margin-right: 8px
           font-size: 14px
           color: rgb(240, 20, 20)
         .old
@@ -221,90 +221,87 @@ export default {
           font-size: 10px
           color: rgb(147, 153, 159)
       .cartcontrol-wrapper
-        position absolute
-        right 12px
-        bottom 12px
+        position: absolute
+        right: 12px
+        bottom: 12px
       .buy
-        position absolute
-        right 18px
-        bottom 18px
-        z-index 30
-        height 24px
-        line-height 24px
-        padding 0 12px
-        box-sizing border-box
-        font-size 10px
-        border-radius 12px
-        color #fff
-        background-color rgb(0,160,220)
-        opacity 1
-        &.fade-enter-active,&.fade-leave-active
-          transition all 0.5s 
-        &.fade-enter,&.fade-leave-active
-          opacity 0  
+        position: absolute
+        right: 18px
+        bottom: 18px
+        z-index: 10
+        height: 24px
+        line-height: 24px
+        padding: 0 12px
+        box-sizing: border-box
+        border-radius: 12px
+        font-size: 10px
+        color: #fff
+        background: rgb(0, 160, 220)
+        opacity: 1
+        &.fade-enter-active, &.fade-leave-active
+          transition: all 0.2s
+        &.fade-enter, &.fade-leave-active
+          opacity: 0
+          z-index: -1
     .info
-      padding 18px
+      padding: 18px
       .title
-        line-height 14px
-        margin-bottom 6px
-        font-size 14px
-        color rgb(7,17,27)
+        line-height: 14px
+        margin-bottom: 6px
+        font-size: 14px
+        color: rgb(7, 17, 27)
       .text
-        font-size 12px
-        font-weight 200
-        color rgb(77,85,93)  
-        line-height 24px
-        margin 0 8px
-    .ratings
-      padding-top 18px
+        line-height: 24px
+        padding: 0 8px
+        font-size: 12px
+        color: rgb(77, 85, 93)
+    .rating
+      padding-top: 18px
       .title
-        margin-left 18px      
-        line-height 14px
-        margin-bottom 6px
-        font-size 14px
-        color rgb(7,17,27)
+        line-height: 14px
+        margin-left: 18px
+        font-size: 14px
+        color: rgb(7, 17, 27)
       .rating-wrapper
-        padding 0 18px
+        padding: 0 18px
         .rating-item
-          position relative
-          padding 16px 0
-          border-1px(rgba(7,17,27,0.1))
+          position: relative
+          padding: 16px 0
+          border-1px(rgba(7, 17, 27, 0.1))
           .user
-            position absolute
-            right 0
-            top 16px
-            font-size 0
-            line-height 12px
+            position: absolute
+            right: 0
+            top: 16px
+            line-height: 12px
+            font-size: 0
             .name
-              display inline-block
-              vertical-align top
-              font-size 10px
-              color rgb(147,153,159)
-              margin-right 6px
+              display: inline-block
+              margin-right: 6px
+              vertical-align: top
+              font-size: 10px
+              color: rgb(147, 153, 159)
             .avatar
-              border-radius 50%
+              border-radius: 50%
           .time
-            line-height 12px
-            font-size 10px
-            color rgb(147,153,159)
+            margin-bottom: 6px
+            line-height: 12px
+            font-size: 10px
+            color: rgb(147, 153, 159)
           .text
-            line-height 16px
-            font-size 12px
-            color rgb(7,17,27)
+            line-height: 16px
+            font-size: 12px
+            color: rgb(7, 17, 27)
             .icon-thumb_up, .icon-thumb_down
-              margin-right 4px
-              line-height 16px
-              font-size 12px
+              margin-right: 4px
+              line-height: 16px
+              font-size: 12px
             .icon-thumb_up
-              color rgb(0,160,220)
-            .icon-thumb_down  
-              color rgb(147,153,159)
-        .on-ratings
-          padding 16px 0
-          font-size 12px
-          color rgb(147,153,159)
+              color: rgb(0, 160, 220)
+            .icon-thumb_down
+              color: rgb(147, 153, 159)
 
-
-
-
+        .no-rating
+          padding: 16px 0
+          font-size: 12px
+          color: rgb(147, 153, 159)
 </style>
