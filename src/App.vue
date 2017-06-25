@@ -39,17 +39,15 @@
         }
       };
     },
-    created() {
+   created() {
       //因为在dev-server.js中定义了获取数据的接口，所以这里可以省略路径的写法
-      this.$http.get('/api/seller').then(response => {
-        //判断错误码
-        //response的数据存在 response.body.data里面
-        if (response.body.errno == 0) {
+      this.$http.get('/static/json/data.json').then(response => {
+        
           //Object.assign() 方法用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
           //复制的不是指针，是值，所以源对象更改之后不会影响复制之后的
           //赋值的时候必须要想清楚需要的是什么值，就取什么值给对应的变量
-          this.seller = Object.assign({}, this.seller, response.body.data);
-        }
+          this.seller = Object.assign({}, this.seller, response.body.seller);
+        
       })
     },
     components: {

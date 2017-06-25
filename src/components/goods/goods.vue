@@ -156,25 +156,21 @@
       cartcontrol,
       food
     },
-    created() {
+     created() {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
       //因为在dev-server.js中定义了获取数据的接口，所以这里可以省略路径的写法
-      this.$http.get('/api/goods').then(response => {
-        //判断错误码
-        //response的数据存在 response.body.data里面
-        if (response.body.errno == 0) {
-          //Object.assign() 方法用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
-          //复制的不是指针，是值，所以源对象更改之后不会影响复制之后的
-          //赋值的时候必须要想清楚需要的是什么值，就取什么值给对应的变量
-          this.goods = response.body.data
-          //即使数据更新了，但是vue更新dom是异步的，所以要通过钩子函数来确保BScroll获取的dom高度是vue更新dom之后的高度，需要通过一个钩子函数来确定，
-          this.$nextTick(() => {
-            this._initScroll()
-            this._calculateHeight()
-          })
-        }
+      this.$http.get('/static/json/data.json').then(response => {
+        //Object.assign() 方法用于将所有可枚举的属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+        //复制的不是指针，是值，所以源对象更改之后不会影响复制之后的
+        //赋值的时候必须要想清楚需要的是什么值，就取什么值给对应的变量
+        this.goods = response.body.goods
+        //即使数据更新了，但是vue更新dom是异步的，所以要通过钩子函数来确保BScroll获取的dom高度是vue更新dom之后的高度，需要通过一个钩子函数来确定，
+        this.$nextTick(() => {
+          this._initScroll()
+          this._calculateHeight()
+        })
       })
-    },
+    }
   }
 </script>
 

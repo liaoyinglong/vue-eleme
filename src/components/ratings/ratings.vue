@@ -55,76 +55,73 @@
 </template>
 
 <script>
-  import star from '../star/star'
-  import split from '../split/split'
-  import ratingselect from '../ratingselect/ratingselect'
-  import BScroll from 'better-scroll'
-  import {
-    formatDate
-  } from 'common/js/date'
-  const ALL = 2;
-  const ERR_OK = 0;
-  export default {
-    data() {
-      return {
-        rating: [],
-        selectType: ALL,
-        onlyContent: true
+import star from '../star/star'
+import split from '../split/split'
+import ratingselect from '../ratingselect/ratingselect'
+import BScroll from 'better-scroll'
+import {
+  formatDate
+} from 'common/js/date'
+const ALL = 2;
+const ERR_OK = 0;
+export default {
+  data() {
+    return {
+      rating: [],
+      selectType: ALL,
+      onlyContent: true
+    }
+  },
+  methods: {
+    needShow(type, text) {
+      if (this.onlyContent && !text) {
+        return false
       }
-    },
-    methods: {
-      needShow(type, text) {
-        if (this.onlyContent && !text) {
-          return false
-        }
-        if (this.selectType === ALL) {
-          return true
-        }
-        return type === this.selectType
-      },
-      selectRating(type) {
-        this.selectType = type;
-        this.$nextTick(() => {
-          this.scroll.refresh();
-        });
-      },
-      toggleContent() {
-        this.onlyContent = !this.onlyContent;
-        this.$nextTick(() => {
-          this.scroll.refresh();
-        });
+      if (this.selectType === ALL) {
+        return true
       }
+      return type === this.selectType
     },
-    props: {
-      seller: {
-        type: Object,
-      }
+    selectRating(type) {
+      this.selectType = type;
+      this.$nextTick(() => {
+        this.scroll.refresh();
+      });
     },
-    created() {
-      this.$http.get('/api/ratings').then(res => {
-        res = res.body
-        if (res.errno === ERR_OK) {
-          this.rating = res.data
-        }
-        this.$nextTick(() => {
-          this.scroll = new BScroll(this.$refs.ratings, {
-            click: true
-          })
+    toggleContent() {
+      this.onlyContent = !this.onlyContent;
+      this.$nextTick(() => {
+        this.scroll.refresh();
+      });
+    }
+  },
+  props: {
+    seller: {
+      type: Object,
+    }
+  },
+  created() {
+    this.$http.get('/static/json/data.json').then(res => {
+      this.rating = res.body.ratings
+      this.$nextTick(() => {
+        this.scroll = new BScroll(this.$refs.ratings, {
+          click: true
         })
       })
-    },
-    components: {
-      star,
-      split,
-      ratingselect
-    },
-    filters: {
-      formatDate(time) {
-        let date = new Date(time)
-        return formatDate(date, 'yyyy-MM-dd hh:mm')
-      }
+    })
+  },
+  components: {
+    star,
+    split,
+    ratingselect
+  },
+  filters: {
+    formatDate(time) {
+      let date = new Date(time)
+      return formatDate(date, 'yyyy-MM-dd hh:mm')
     }
   }
+}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
