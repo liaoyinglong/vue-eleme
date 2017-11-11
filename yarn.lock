@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@types/vue-resource@^0.9.34":
+  version "0.9.34"
+  resolved "http://r.cnpmjs.org/@types/vue-resource/download/@types/vue-resource-0.9.34.tgz#a44f59c85485d16d80e0d7671c18bc73f871089e"
+  dependencies:
+    "@types/vue" "^1.0.31"
+
+"@types/vue@^1.0.31":
+  version "1.0.31"
+  resolved "http://r.cnpmjs.org/@types/vue/download/@types/vue-1.0.31.tgz#c33010d649fb237386bbf58944ac3b86aa394f06"
+
 abbrev@1:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/abbrev/download/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -4110,6 +4120,10 @@ type-is@~1.6.15:
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.15"
+
+typescript@^2.6.1:
+  version "2.6.1"
+  resolved "http://r.cnpmjs.org/typescript/download/typescript-2.6.1.tgz#ef39cdea27abac0b500242d6726ab90e0c846631"
 
 uglify-js@3.0.x:
   version "3.0.20"
