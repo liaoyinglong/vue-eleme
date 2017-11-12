@@ -2,21 +2,22 @@
   "exclude": ["node_modules"],
 
   "compilerOptions": {
+    // 对没有export的库进行兼容
     "allowSyntheticDefaultImports": true,
 
     "allowJs": true,
-
+    // 采用import的模块化
     "module": "es2015",
-
+    // 编译es5的语法
     "target": "es5",
-
+    //  采用什么方式进行加载
     "moduleResolution": "node",
-
+    // 开启装饰器模式
     "experimentalDecorators": true,
 
     "isolatedModules": true,
-
-    "lib": ["es2017", "dom"],
+    // 识别基本的类库
+    "lib": ["es2017", "dom", "es2015", "es5"],
 
     "sourceMap": true,
 

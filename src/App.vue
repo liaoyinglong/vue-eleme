@@ -42,7 +42,11 @@ export default Vue.extend({
   created() {},
   methods: {
     getSellerId(): string {
-      return urlParse().id
+      interface queryParams {
+        id: string
+      }
+      let queryParams = urlParse() as queryParams
+      return queryParams.id
     },
   },
 })

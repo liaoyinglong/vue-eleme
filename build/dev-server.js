@@ -29,53 +29,52 @@ var goods = appData.goods
 var ratings = appData.ratings
 
 //定义路由
-var apiRoutes = express.Router();
+var apiRoutes = express.Router()
 
-apiRoutes.get('/seller', function (req, res) {
+apiRoutes.get('/seller', function(req, res) {
   res.json({
     errno: 0,
     data: seller,
-  });
-});
-apiRoutes.get('/goods', function (req, res) {
+  })
+})
+apiRoutes.get('/goods', function(req, res) {
   res.json({
     errno: 0,
     data: goods,
   })
-});
-apiRoutes.get('/ratings', function (req, res) {
+})
+apiRoutes.get('/ratings', function(req, res) {
   res.json({
     errno: 0,
-    data: ratings
+    data: ratings,
   })
 })
 
-app.use('/api',apiRoutes);
+app.use('/api', apiRoutes)
 
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
-  quiet: true
+  quiet: true,
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
-  log: () => {
-  }
+  log: () => {},
 })
 // force page reload when html-webpack-plugin template changes
-compiler.plugin('compilation', function (compilation) {
-  compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
-    hotMiddleware.publish({action: 'reload'})
+compiler.plugin('compilation', function(compilation) {
+  compilation.plugin('html-webpack-plugin-after-emit', function(data, cb) {
+    hotMiddleware.publish({ action: 'reload' })
     cb()
   })
 })
 
 // proxy api requests
-Object.keys(proxyTable).forEach(function (context) {
+Object.keys(proxyTable).forEach(function(context) {
   var options = proxyTable[context]
   if (typeof options === 'string') {
-    options = {target: options}
+    options = { target: options }
   }
   app.use(proxyMiddleware(options.filter || context, options))
 })
@@ -117,5 +116,5 @@ module.exports = {
   ready: readyPromise,
   close: () => {
     server.close()
-  }
+  },
 }
